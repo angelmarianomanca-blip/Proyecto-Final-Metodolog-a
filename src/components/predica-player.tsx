@@ -100,7 +100,7 @@ export function PredicaPlayer({
 
         <div className="bg-white/10 rounded-xl p-4 border border-white/15 space-y-2">
           <div className="text-xs text-[#E9D5B5]">
-            Reproductor HTML5 Audio · Reproducción progresiva (RF-12)
+            Reproductor de Audio · Reproducción progresiva
           </div>
           <audio
             controls
@@ -119,7 +119,7 @@ export function PredicaPlayer({
           <div>
             <h2 className="text-xl font-bold">Transcripción completa (1:1)</h2>
             <p className="text-xs text-[#66584B]">
-              Lectura simultánea optimizada con buscador interno (RNF-06).
+              Lectura simultánea optimizada con buscador interno.
             </p>
           </div>
           <div className="relative w-full sm:w-64">

@@ -20,7 +20,7 @@ export default async function AdminUsuariosPage() {
     <CampusShell user={user}>
       <Stack className="gap-6">
         <PageHeader
-          eyebrow="Administración · RF-03, RN-02"
+          eyebrow="Administración"
           title="Usuarios y Roles"
           description="Administrá altas, roles, bajas lógicas y restablecimiento de contraseñas."
         />

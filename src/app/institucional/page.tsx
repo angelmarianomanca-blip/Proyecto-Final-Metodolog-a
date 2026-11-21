@@ -56,7 +56,7 @@ export default async function InstitucionalPage() {
           <div className="relative z-10 space-y-4 max-w-3xl">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#A46B29] text-white text-xs font-bold uppercase tracking-wider">
               <Heart className="w-3.5 h-3.5" />
-              <span>Nuestras Doctrinas · RF-19</span>
+              <span>Nuestras Doctrinas</span>
             </span>
             <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
               Lo que creemos, confesamos y vivimos en comunidad

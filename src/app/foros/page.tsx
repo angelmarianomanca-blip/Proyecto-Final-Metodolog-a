@@ -31,7 +31,7 @@ export default async function ForosPage({
     <CampusShell user={user}>
       <Stack className="gap-6">
         <PageHeader
-          eyebrow="Comunidad · RF-16"
+          eyebrow="Comunidad"
           title="Foros Temáticos"
           description="Consultas académicas y pastorales asociadas a cada curso."
           action={<NuevaConsultaForoButton cursos={cursosRes.data} />}

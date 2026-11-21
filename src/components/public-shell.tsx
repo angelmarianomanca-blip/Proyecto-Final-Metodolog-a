@@ -180,7 +180,7 @@ export function PublicShell({
             </div>
             <p className="text-xs text-[#B3A593] leading-relaxed">
               Plataforma de formación teológica autodidacta. Educación continua,
-              gratuita y asincrónica (RN-11).
+              gratuita y asincrónica.
             </p>
           </div>
           <div className="space-y-2 text-xs">

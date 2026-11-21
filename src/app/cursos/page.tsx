@@ -25,9 +25,9 @@ export default async function CursosPage({
       <Stack className="gap-6">
         <PageHeader
           dark
-          eyebrow="Catálogo Público · RF-07"
+          eyebrow="Catálogo Público"
           title="Cursos de Formación Teológica"
-          description="Acceso 100% gratuito y asincrónico a cursos publicados (RN-06, RN-11)."
+          description="Acceso 100% gratuito y asincrónico a cursos publicados."
           action={
             <form action="/cursos" className="relative w-full sm:w-72">
               <Search className="w-4 h-4 text-[#D6CBB8] absolute left-3.5 top-2.5" />

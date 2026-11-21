@@ -75,14 +75,14 @@ export default function RecuperarPasswordPage() {
           <span>Volver a ingresar</span>
         </Link>
         <span className="px-3 py-1 rounded-full bg-[#A46B29] text-white text-xs font-semibold">
-          RF-21 · 30 min
+          Válido por 30 min
         </span>
       </div>
 
       <div className="max-w-md w-full mx-auto my-6 bg-white border border-[#E3DACB] rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
         <div className="space-y-1">
           <span className="text-xs font-bold text-[#A46B29]">
-            Token temporal de un solo uso (RN-12)
+            Código temporal de un solo uso
           </span>
           <h1 className="text-2xl font-bold text-[#241A13]">
             Recuperar contraseña

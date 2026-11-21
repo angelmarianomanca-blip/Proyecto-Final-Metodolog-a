@@ -96,7 +96,7 @@ export function RegistroForm({
 
       <FormField
         label="Congregación / Pertenencia *"
-        hint="Elegí tu sede o marcá Externo si no pertenecés a una congregación vinculada (RN-03)."
+        hint="Elegí tu sede o marcá Externo si no pertenecés a una congregación vinculada."
       >
         <Select
           value={idCongregacion}

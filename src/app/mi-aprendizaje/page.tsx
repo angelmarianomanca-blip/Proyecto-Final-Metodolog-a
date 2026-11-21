@@ -35,7 +35,7 @@ export default async function MiAprendizajePage() {
     <CampusShell user={user}>
       <Stack className="gap-6">
         <PageHeader
-          eyebrow="Campus Virtual · RF-08, RF-09"
+          eyebrow="Campus Virtual"
           title="Mis Cursos y Progreso"
           description="Retomá tus lecciones desde el punto exacto donde dejaste y descargá tus certificados al llegar al 100%."
           action={

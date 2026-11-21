@@ -140,7 +140,7 @@ export function AdminSoporteClient({ items }: { items: SoporteItem[] }) {
       <Modal
         open={open}
         onClose={() => setOpen(false)}
-        eyebrow="Bot Guía · RF-15"
+        eyebrow="Bot Guía"
         title={editing ? 'Editar pregunta frecuente' : 'Nueva pregunta frecuente'}
       >
         <form onSubmit={handleSave} className="space-y-4">

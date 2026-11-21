@@ -36,7 +36,7 @@ export function InscribirseButton({ cursoId }: { cursoId: number }) {
       disabled={loading}
       className="w-full py-2.5 uppercase tracking-wider"
     >
-      {loading ? 'Inscribiendo...' : 'Inscribirme gratis (RF-08)'}
+      {loading ? 'Inscribiendo...' : 'Inscribirme gratis'}
     </Button>
   );
 }

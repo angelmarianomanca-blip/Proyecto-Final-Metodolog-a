@@ -16,7 +16,7 @@ export default async function AdminInstitucionalPage() {
     <CampusShell user={user}>
       <Stack className="gap-6">
         <PageHeader
-          eyebrow="Administración · RF-18"
+          eyebrow="Administración"
           title="Editor de Doctrinas e Información Institucional"
           description="Modificá los bloques públicos de Declaración de Fe, Doctrina, Visión y Creencias."
         />

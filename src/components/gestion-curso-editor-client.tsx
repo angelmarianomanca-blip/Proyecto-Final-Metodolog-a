@@ -151,7 +151,7 @@ export function GestionCursoEditorClient({
     });
     if (res.ok) {
       toast.success(
-        toggleTarget.activo ? 'Lección desactivada (RN-13).' : 'Lección reactivada.'
+        toggleTarget.activo ? 'Lección desactivada.' : 'Lección reactivada.'
       );
       setToggleTarget(null);
       router.refresh();
@@ -288,7 +288,7 @@ export function GestionCursoEditorClient({
       <Modal
         open={lecModal}
         onClose={() => setLecModal(false)}
-        eyebrow="Material Didáctico · RF-06"
+        eyebrow="Material Didáctico"
         title={editingLec ? 'Editar lección' : 'Nueva lección'}
         maxWidth="max-w-2xl"
       >
@@ -304,7 +304,7 @@ export function GestionCursoEditorClient({
           </FormField>
           <FormField
             label="Enlace de video externo (YouTube o Vimeo)"
-            hint="Validado en servidor para embebido seguro (RF-06)."
+            hint="Validado en servidor para embebido seguro."
           >
             <Input
               type="url"
@@ -347,7 +347,7 @@ export function GestionCursoEditorClient({
         onClose={() => setToggleTarget(null)}
         onConfirm={handleToggleLeccion}
         title={toggleTarget?.activo ? 'Desactivar lección' : 'Reactivar lección'}
-        description="Según RN-13, las lecciones se desactivan lógicamente para preservar la integridad del progreso académico."
+        description="Las lecciones se desactivan de forma segura para preservar el historial y progreso académico de los alumnos."
       />
     </div>
   );

@@ -18,7 +18,7 @@ export default async function PerfilPage() {
     <CampusShell user={user}>
       <Stack className="gap-6">
         <PageHeader
-          eyebrow="Mi Cuenta · RF-04"
+          eyebrow="Mi Cuenta"
           title="Mi Perfil e Historial Académico"
           description="Actualizá tus datos personales, cambiá tu clave y descargá tus certificados."
         />

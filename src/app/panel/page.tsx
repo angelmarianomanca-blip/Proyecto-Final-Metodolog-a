@@ -31,7 +31,7 @@ export default async function PanelPage() {
     <CampusShell user={user}>
       <Stack className="gap-6">
         <PageHeader
-          eyebrow="Estadísticas · RF-23, CA-06"
+          eyebrow="Estadísticas"
           title="Tablero Directivo y Métricas de Uso"
           description="Indicadores en vivo calculados sobre la base de datos relacional."
         />

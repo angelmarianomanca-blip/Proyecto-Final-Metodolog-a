@@ -123,7 +123,7 @@ export function GestionCursosClient({
       toast.error(data.error?.message ?? 'No se pudo archivar.');
       return;
     }
-    toast.success('Curso archivado correctamente (RN-13).');
+    toast.success('Curso archivado correctamente.');
     setArchiveTarget(null);
     router.refresh();
   };
@@ -205,7 +205,7 @@ export function GestionCursosClient({
       <Modal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
-        eyebrow="Gestión Académica · RF-05, RN-06"
+        eyebrow="Gestión Académica"
         title={editing ? 'Editar configuración del curso' : 'Crear nuevo curso'}
         subtitle="Cada campo separado y validado con Zod. Todo curso nuevo inicia en borrador."
         maxWidth="max-w-2xl"
@@ -257,7 +257,7 @@ export function GestionCursosClient({
               )}
               {editing && (
                 <FormField
-                  label="Estado del curso (RN-06)"
+                  label="Estado del curso"
                   hint="Para publicar se requiere al menos 1 módulo con 1 lección activa."
                 >
                   <Select
@@ -275,7 +275,7 @@ export function GestionCursosClient({
 
           <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
             <span className="text-xs text-[#66584B]">
-              RN-11: Todos los cursos son 100% gratuitos.
+              Todos los cursos son 100% gratuitos.
             </span>
             <div className="flex gap-2">
               <Button variant="outline" onClick={() => setModalOpen(false)}>
@@ -294,7 +294,7 @@ export function GestionCursosClient({
         onClose={() => setArchiveTarget(null)}
         onConfirm={handleArchive}
         title="Archivar curso"
-        description={`¿Confirmás archivar "${archiveTarget?.titulo ?? ''}"? Dejará de mostrarse en el catálogo público manteniendo el historial de inscriptos (RN-13).`}
+        description={`¿Confirmás archivar "${archiveTarget?.titulo ?? ''}"? Dejará de mostrarse en el catálogo público manteniendo el historial de inscriptos.`}
         confirmLabel="Archivar curso"
       />
     </div>

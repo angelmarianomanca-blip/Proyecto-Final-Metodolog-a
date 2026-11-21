@@ -16,7 +16,7 @@ export default async function AdminSoportePage() {
     <CampusShell user={user}>
       <Stack className="gap-6">
         <PageHeader
-          eyebrow="Administración · RF-15"
+          eyebrow="Administración"
           title="Base de Conocimiento del Bot Guía"
           description="Administrá preguntas frecuentes, instrucciones paso a paso y rutas sugeridas."
         />

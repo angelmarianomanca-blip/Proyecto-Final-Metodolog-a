@@ -156,19 +156,19 @@ export function GestionPredicasClient({
       <Modal
         open={open}
         onClose={() => setOpen(false)}
-        eyebrow="RF-10, RF-11, RN-07 · Relación Exclusiva 1:1"
+        eyebrow="Gestión de Prédicas"
         title={
           editingId
-            ? 'Editar Prédica y Transcripción 1:1'
-            : 'Cargar Nueva Prédica y Transcripción 1:1'
+            ? 'Editar Prédica y Transcripción'
+            : 'Cargar Nueva Prédica y Transcripción'
         }
-        subtitle="Operación atómica transaccional que vincula metadatos bíblicos, audio HTML5 y transcripción."
+        subtitle="Vinculá los metadatos bíblicos, el archivo de audio y la transcripción completa en un solo paso."
         maxWidth="max-w-3xl"
       >
         <form onSubmit={handleSave} className="space-y-5">
           <div className="bg-[#FAF7F1] border border-[#E3DACB] rounded-2xl p-4 sm:p-5 space-y-4">
             <div className="text-xs font-bold uppercase tracking-wider text-[#241A13]">
-              1. Metadatos Bíblicos Obligatorios (RN-07)
+              1. Metadatos Bíblicos Obligatorios
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormField label="Título de la prédica *">
@@ -230,7 +230,7 @@ export function GestionPredicasClient({
           <div className="bg-[#FAF7F1] border border-[#E3DACB] rounded-2xl p-4 sm:p-5 space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <div className="text-xs font-bold uppercase tracking-wider text-[#241A13]">
-                3. Transcripción Completa Exclusiva 1:1 (RF-11)
+                3. Transcripción Completa
               </div>
               <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-semibold">
                 Indexada para buscador y RAG
@@ -249,8 +249,7 @@ export function GestionPredicasClient({
 
           <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
             <span className="text-xs text-[#66584B]">
-              Solo Profesor/Pastor y Administrador pueden gestionar prédicas
-              (RN-08).
+              Solo Profesor/Pastor y Administrador pueden gestionar prédicas.
             </span>
             <div className="flex gap-2">
               <Button variant="outline" onClick={() => setOpen(false)}>

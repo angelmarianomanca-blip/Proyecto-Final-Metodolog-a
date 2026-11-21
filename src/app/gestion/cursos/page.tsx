@@ -22,7 +22,7 @@ export default async function GestionCursosPage() {
     <CampusShell user={user}>
       <Stack className="gap-6">
         <PageHeader
-          eyebrow="Gestión Académica · RF-05"
+          eyebrow="Gestión Académica"
           title="Mis Cursos (ABM)"
           description="Creá cursos en borrador, organizá sus módulos y lecciones, y publicalos en el catálogo."
         />

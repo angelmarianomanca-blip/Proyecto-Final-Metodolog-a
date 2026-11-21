@@ -18,7 +18,7 @@ export default async function GestionPredicasPage() {
     <CampusShell user={user}>
       <Stack className="gap-6">
         <PageHeader
-          eyebrow="Gestión Académica · RF-10, RF-11"
+          eyebrow="Gestión Académica"
           title="Gestión de Prédicas y Transcripciones 1:1"
           description="Cargá audios con metadatos bíblicos obligatorios y su transcripción exclusiva 1:1."
         />

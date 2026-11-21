@@ -24,7 +24,7 @@ export default async function GestionForosPage() {
     <CampusShell user={user}>
       <Stack className="gap-6">
         <PageHeader
-          eyebrow="Moderación Docente · RF-17, RN-10"
+          eyebrow="Moderación Docente"
           title="Moderación de Foros"
           description="Consultas abiertas priorizadas para respuesta pastoral, cierre o moderación."
         />

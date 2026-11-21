@@ -38,7 +38,7 @@ export default async function GestionCursoEditorPage({
           <span>Volver a Mis Cursos</span>
         </Link>
         <PageHeader
-          eyebrow="Editor de Estructura · RF-05, RF-06"
+          eyebrow="Editor de Estructura"
           title={curso.titulo}
           description="Administrá módulos ordenados, videos YouTube/Vimeo, guías PDF y contenido de texto."
         />

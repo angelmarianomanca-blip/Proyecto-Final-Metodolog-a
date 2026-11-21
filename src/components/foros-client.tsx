@@ -62,7 +62,7 @@ export function NuevaConsultaForoButton({
       <Modal
         open={open}
         onClose={() => setOpen(false)}
-        eyebrow="Foros Temáticos · RF-16"
+        eyebrow="Foros Temáticos"
         title="Publicar nueva consulta"
       >
         <form onSubmit={handleCreate} className="space-y-4">

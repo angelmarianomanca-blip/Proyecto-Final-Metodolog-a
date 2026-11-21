@@ -16,7 +16,7 @@ export default async function AdminCongregacionesPage() {
     <CampusShell user={user}>
       <Stack className="gap-6">
         <PageHeader
-          eyebrow="Administración · RF-20, RN-13"
+          eyebrow="Administración"
           title="Congregaciones y Sedes"
           description="Alta, edición y baja lógica de las congregaciones asociadas."
         />

@@ -108,7 +108,7 @@ export function AsistenteClient({
             <span>Asistente Pedagógico de IA (RAG)</span>
           </h1>
           <p className="text-xs text-[#66584B]">
-            Delimitación doctrinal estricta (RN-09 · temperature 0.2): responde
+            Delimitación doctrinal estricta: responde
             exclusivamente con lecciones y prédicas cargadas.
           </p>
         </div>
@@ -163,7 +163,7 @@ export function AsistenteClient({
             }
             className="px-3 py-1 rounded-full bg-white/10 border border-white/25 hover:bg-[#A46B29] cursor-pointer"
           >
-            Probar fuera de corpus (RN-09)
+            Probar consulta fuera de tema
           </button>
         </div>
       </div>

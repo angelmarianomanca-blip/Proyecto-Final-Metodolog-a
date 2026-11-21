@@ -104,7 +104,7 @@ export function ForoDetalleClient({
       open: true,
       title: 'Cerrar hilo de consulta',
       description:
-        'Al cerrar el hilo no se admitirán nuevas respuestas (RN-10). ¿Confirmás el cierre?',
+        'Al cerrar el hilo no se admitirán nuevas respuestas. ¿Confirmás el cierre?',
       action: async () => {
         const res = await fetch(`/api/foros/${consulta.id}`, {
           method: 'PATCH',
@@ -263,7 +263,7 @@ export function ForoDetalleClient({
       {consulta.estado === 'cerrada' ? (
         <div className="p-4 rounded-2xl bg-stone-100 border border-stone-300 text-xs text-stone-700 text-center">
           Este hilo fue cerrado por moderación docente. No se admiten nuevas
-          respuestas (RN-10).
+          respuestas.
         </div>
       ) : (
         <form

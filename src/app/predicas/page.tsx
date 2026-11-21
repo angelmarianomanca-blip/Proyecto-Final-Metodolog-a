@@ -31,7 +31,7 @@ export default async function PredicasPage({
       <Stack className="gap-6">
         <PageHeader
           dark
-          eyebrow="Repositorio Público · RF-12"
+          eyebrow="Repositorio Público"
           title="Prédicas y Estudios Bíblicos"
           description="Escuchá las predicaciones y leé su transcripción 1:1 en simultáneo."
         />

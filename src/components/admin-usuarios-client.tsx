@@ -196,7 +196,7 @@ export function AdminUsuariosClient({
                     </Button>
                     {isSelf ? (
                       <span className="text-xs text-[#66584B] px-2">
-                        Protegido (RN-02)
+                        Protegido
                       </span>
                     ) : (
                       <Button
@@ -218,7 +218,7 @@ export function AdminUsuariosClient({
       <Modal
         open={createOpen}
         onClose={() => setCreateOpen(false)}
-        eyebrow="Administración · RF-03"
+        eyebrow="Administración"
         title="Alta de nuevo usuario"
       >
         <form onSubmit={handleCreate} className="space-y-4">
@@ -320,7 +320,7 @@ export function AdminUsuariosClient({
         onClose={() => setToggleTarget(null)}
         onConfirm={handleToggleActivo}
         title={toggleTarget?.activo ? 'Desactivar usuario' : 'Reactivar usuario'}
-        description="Un usuario desactivado no podrá iniciar sesión ni usar sesiones activas previas (RF-03, RN-13)."
+        description="Un usuario desactivado no podrá iniciar sesión ni usar sesiones activas previas."
       />
     </div>
   );

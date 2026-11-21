@@ -27,8 +27,7 @@ export default async function RegistroPage() {
             Crear cuenta de Alumno
           </h1>
           <p className="text-xs text-[#66584B]">
-            Alta pública para miembros de congregaciones o estudiantes externos
-            (RF-01).
+            Alta pública para miembros de congregaciones o estudiantes externos.
           </p>
         </div>
         <RegistroForm congregaciones={congregaciones} />

@@ -151,7 +151,7 @@ export function AdminCongregacionesClient({
       <Modal
         open={open}
         onClose={() => setOpen(false)}
-        eyebrow="Administración · RF-20"
+        eyebrow="Administración"
         title={editing ? 'Editar congregación' : 'Nueva congregación / sede'}
       >
         <form onSubmit={handleSave} className="space-y-4">
@@ -201,7 +201,7 @@ export function AdminCongregacionesClient({
         onClose={() => setToggleTarget(null)}
         onConfirm={handleToggle}
         title={toggleTarget?.activo ? 'Dar de baja sede' : 'Reactivar sede'}
-        description="Si la sede posee usuarios activos vinculados, el servidor bloqueará la baja con CONGREGACION_EN_USO (RN-13)."
+        description="Si la sede posee usuarios activos vinculados, no se podrá dar de baja hasta reasignarlos."
       />
     </div>
   );
