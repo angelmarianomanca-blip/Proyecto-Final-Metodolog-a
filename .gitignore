@@ -9,3 +9,10 @@ local.db-wal
 local.db-shm
 *.tsbuildinfo
 next-env.d.ts
+
+# archivos locales de referencia (no subir al repositorio)
+mockup/
+Requerimientos.md
+requerimientos.md
+Devocional_Dias_13_al_19_Editorial.pdf
+index.html
