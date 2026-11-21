@@ -173,11 +173,8 @@ export function PublicShell({
 
       <footer className="bg-[#1C140E] text-[#CFC4B4] border-t border-white/10">
         <div className="max-w-6xl mx-auto px-4 py-10 grid grid-cols-1 sm:grid-cols-3 gap-8 text-sm">
-          <div className="space-y-2">
-            <div className="font-serif-editorial font-bold text-xl brand-title-gradient">
-              Iglesia <span className="italic font-normal text-[#D4A366]">de</span>{' '}
-              Cristo
-            </div>
+          <div className="space-y-2.5">
+            <BrandLogo href="/" compact />
             <p className="text-xs text-[#B3A593] leading-relaxed">
               Plataforma de formación teológica autodidacta. Educación continua,
               gratuita y asincrónica.

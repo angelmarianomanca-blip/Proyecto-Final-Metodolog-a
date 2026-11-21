@@ -1,5 +1,71 @@
 import Link from 'next/link';
 
+/**
+ * Emblema tipográfico/heráldico limpio de Iglesia de Cristo:
+ * sello circular fino con cruz clásica sobre escritura abierta, sin brillos ni estrellas.
+ */
+export function BrandEmblem({
+  size = 'md',
+  tone = 'light',
+}: {
+  size?: 'sm' | 'md' | 'lg';
+  tone?: 'light' | 'dark';
+}) {
+  const dims =
+    size === 'lg' ? 'w-12 h-12' : size === 'sm' ? 'w-8 h-8' : 'w-9 h-9';
+  const strokePrimary = tone === 'light' ? '#FAF7F1' : '#241A13';
+  const strokeAccent = tone === 'light' ? '#D4A366' : '#A46B29';
+
+  return (
+    <svg
+      viewBox="0 0 40 40"
+      className={`${dims} shrink-0`}
+      fill="none"
+      aria-hidden="true"
+    >
+      {/* Sello exterior fino */}
+      <circle
+        cx="20"
+        cy="20"
+        r="18.25"
+        stroke={strokeAccent}
+        strokeWidth="1.25"
+        strokeOpacity="0.85"
+      />
+      {/* Aro interior punteado sutil / línea fina */}
+      <circle
+        cx="20"
+        cy="20"
+        r="15"
+        stroke={strokePrimary}
+        strokeWidth="0.75"
+        strokeOpacity="0.28"
+      />
+      {/* Cruz clásica estilizada */}
+      <path
+        d="M20 9.5V23.5M14.5 14.5H25.5"
+        stroke={strokePrimary}
+        strokeWidth="1.75"
+        strokeLinecap="square"
+      />
+      {/* Base de Escritura abierta (trazo arquitectónico minimalista) */}
+      <path
+        d="M11.5 27.5C14.2 25.8 17.3 25.8 20 27.4C22.7 25.8 25.8 25.8 28.5 27.5"
+        stroke={strokeAccent}
+        strokeWidth="1.6"
+        strokeLinecap="round"
+      />
+      <path
+        d="M13.5 30.2C15.8 29 18 29 20 30.2C22 29 24.2 29 26.5 30.2"
+        stroke={strokePrimary}
+        strokeWidth="1"
+        strokeOpacity="0.55"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 export function BrandLogo({
   href = '/',
   compact = false,
@@ -8,38 +74,24 @@ export function BrandLogo({
   compact?: boolean;
 }) {
   return (
-    <Link href={href} className="group inline-flex items-center gap-2.5 text-left">
-      <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#A46B29] to-[#5B3814] border border-[#E9D5B5]/40 flex items-center justify-center shadow-inner transition-transform duration-300 group-hover:scale-105 group-hover:-rotate-3 shrink-0">
-        <svg
-          viewBox="0 0 24 24"
-          className="w-5 h-5"
-          fill="none"
-          stroke="#FAF7F1"
-          strokeWidth="1.7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M12 7v13" />
-          <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H10a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H5.5A2.5 2.5 0 0 1 3 15.5z" />
-          <path d="M21 6.5A2.5 2.5 0 0 0 18.5 4H14a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h4.5a2.5 2.5 0 0 0 2.5-2.5z" />
-          <path
-            d="M12 1.5l.6 1.5 1.5.6-1.5.6L12 5.7l-.6-1.5-1.5-.6 1.5-.6z"
-            fill="#F7E3BA"
-            stroke="none"
-          />
-        </svg>
+    <Link
+      href={href}
+      className="group inline-flex items-center gap-3 text-left"
+    >
+      <div className="transition-transform duration-300 group-hover:scale-[1.04]">
+        <BrandEmblem size={compact ? 'sm' : 'md'} tone="light" />
       </div>
-      <div className="leading-none">
+      <div className="border-l border-[#E9D5B5]/20 pl-3 leading-none">
         <div
-          className={`font-serif-editorial font-bold tracking-tight brand-title-gradient ${
-            compact ? 'text-base' : 'text-lg sm:text-xl'
+          className={`font-serif-editorial font-semibold tracking-tight text-[#FAF7F1] ${
+            compact ? 'text-base' : 'text-lg sm:text-[1.22rem]'
           }`}
         >
-          Iglesia <span className="italic font-normal text-[#D4A366]">de</span> Cristo
+          Iglesia{' '}
+          <span className="italic font-normal text-[#D4A366]">de</span> Cristo
         </div>
-        <div className="text-[10px] tracking-[0.2em] uppercase text-[#D4A366]/90 mt-1 flex items-center gap-1">
-          <span>✦</span>
-          <span>Formación Teológica</span>
+        <div className="text-[9.5px] tracking-[0.22em] uppercase text-[#C4B49C] mt-1 font-medium">
+          Formación Teológica
         </div>
       </div>
     </Link>

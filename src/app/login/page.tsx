@@ -3,10 +3,11 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { BookOpen, ChevronLeft } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import { toast } from 'sonner';
 import { loginSchema } from '@/lib/schemas';
 import { SESSION_LAST_ACTIVITY_KEY } from '@/lib/constants';
+import { BrandEmblem } from '@/components/brand-logo';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { FormField } from '@/components/primitives';
@@ -72,7 +73,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#241A13] flex flex-col justify-between p-4 sm:p-8">
-      <div className="max-w-md w-full mx-auto flex items-center justify-between text-white">
+      <div className="max-w-md w-full mx-auto flex items-center text-white">
         <Link
           href="/"
           className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#E9D5B5] hover:text-white"
@@ -80,15 +81,12 @@ export default function LoginPage() {
           <ChevronLeft className="w-4 h-4" />
           <span>Volver al inicio</span>
         </Link>
-        <span className="px-3 py-1 rounded-full bg-[#A46B29] text-white text-xs font-semibold">
-          100% Gratuito
-        </span>
       </div>
 
       <div className="max-w-md w-full mx-auto my-6 bg-white border border-[#E3DACB] rounded-2xl p-6 sm:p-8 space-y-5 shadow-2xl">
-        <div className="text-center space-y-1">
-          <div className="w-12 h-12 rounded-full bg-[#A46B29] text-white flex items-center justify-center mx-auto mb-3">
-            <BookOpen className="w-6 h-6" />
+        <div className="text-center space-y-1.5">
+          <div className="flex justify-center mb-3">
+            <BrandEmblem size="lg" tone="dark" />
           </div>
           <h1 className="text-2xl font-bold text-[#241A13]">
             Ingresá a tu Campus
