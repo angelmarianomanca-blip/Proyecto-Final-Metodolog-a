@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FAF7F1;
+  --foreground: #241A13;
+  --card: #FFFFFF;
+  --card-foreground: #241A13;
+  --primary: #A46B29;
+  --primary-foreground: #FFFFFF;
+  --secondary: #E9E1D3;
+  --secondary-foreground: #241A13;
+  --muted: #F3EDE2;
+  --muted-foreground: #66584B;
+  --border: #E3DACB;
+  --wood-dark: #241A13;
+  --wood-deep: #1C140E;
+  --gold-light: #E9D5B5;
+  --gold-accent: #D4A366;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+::selection {
+  background-color: #A46B29;
+  color: #FFFFFF;
+}
+
+.font-serif-editorial {
+  font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+
+.scroll-grow {
+  transition: transform 460ms cubic-bezier(0.22, 1, 0.36, 1), opacity 460ms ease, box-shadow 460ms ease;
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+@keyframes spinBorder {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes sheenSweep {
+  0% { transform: translateX(-140%) skewX(-22deg); opacity: 0; }
+  15% { opacity: 0.75; }
+  45% { transform: translateX(220%) skewX(-22deg); opacity: 0; }
+  100% { transform: translateX(220%) skewX(-22deg); opacity: 0; }
+}
+
+@keyframes auraBreathe {
+  0%, 100% { opacity: 0.45; transform: scale(0.98); }
+  50% { opacity: 0.85; transform: scale(1.04); }
+}
+
+@keyframes titleShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.brand-title-gradient {
+  background: linear-gradient(100deg, #FAF7F1 0%, #F7E3BA 42%, #D4A366 65%, #FAF7F1 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: titleShimmer 7s ease-in-out infinite;
+}
+
+.btn-hero-aura {
+  animation: auraBreathe 3.2s ease-in-out infinite;
+}
+
+.btn-hero-ring {
+  animation: spinBorder 3.8s linear infinite;
+}
+
+.btn-hero-sheen {
+  animation: sheenSweep 3.6s ease-in-out infinite;
+}

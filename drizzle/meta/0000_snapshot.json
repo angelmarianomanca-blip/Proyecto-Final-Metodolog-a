@@ -1,0 +1,1242 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "3c7a2e96-cfec-499d-ac31-37c0f48c26bf",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "base_conocimiento_soporte": {
+      "name": "base_conocimiento_soporte",
+      "columns": {
+        "id_conocimiento": {
+          "name": "id_conocimiento",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "pregunta": {
+          "name": "pregunta",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "respuesta": {
+          "name": "respuesta",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "categoria": {
+          "name": "categoria",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ruta_sugerida": {
+          "name": "ruta_sugerida",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "congregaciones": {
+      "name": "congregaciones",
+      "columns": {
+        "id_congregacion": {
+          "name": "id_congregacion",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nombre_sede": {
+          "name": "nombre_sede",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "direccion": {
+          "name": "direccion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ciudad": {
+          "name": "ciudad",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "telefono_contacto": {
+          "name": "telefono_contacto",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "activo": {
+          "name": "activo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        }
+      },
+      "indexes": {
+        "congregaciones_nombre_sede_unique": {
+          "name": "congregaciones_nombre_sede_unique",
+          "columns": [
+            "nombre_sede"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "consultas_foro": {
+      "name": "consultas_foro",
+      "columns": {
+        "id_consulta": {
+          "name": "id_consulta",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "id_curso": {
+          "name": "id_curso",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_leccion": {
+          "name": "id_leccion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "id_usuario": {
+          "name": "id_usuario",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "titulo_consulta": {
+          "name": "titulo_consulta",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "mensaje_pregunta": {
+          "name": "mensaje_pregunta",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fecha_creacion": {
+          "name": "fecha_creacion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "estado": {
+          "name": "estado",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'abierta'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "consultas_foro_id_curso_cursos_id_curso_fk": {
+          "name": "consultas_foro_id_curso_cursos_id_curso_fk",
+          "tableFrom": "consultas_foro",
+          "tableTo": "cursos",
+          "columnsFrom": [
+            "id_curso"
+          ],
+          "columnsTo": [
+            "id_curso"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "consultas_foro_id_leccion_lecciones_id_leccion_fk": {
+          "name": "consultas_foro_id_leccion_lecciones_id_leccion_fk",
+          "tableFrom": "consultas_foro",
+          "tableTo": "lecciones",
+          "columnsFrom": [
+            "id_leccion"
+          ],
+          "columnsTo": [
+            "id_leccion"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "consultas_foro_id_usuario_usuarios_id_usuario_fk": {
+          "name": "consultas_foro_id_usuario_usuarios_id_usuario_fk",
+          "tableFrom": "consultas_foro",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "id_usuario"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "cursos": {
+      "name": "cursos",
+      "columns": {
+        "id_curso": {
+          "name": "id_curso",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "descripcion": {
+          "name": "descripcion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "estado": {
+          "name": "estado",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'borrador'"
+        },
+        "fecha_creacion": {
+          "name": "fecha_creacion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_profesor": {
+          "name": "id_profesor",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "cursos_id_profesor_usuarios_id_usuario_fk": {
+          "name": "cursos_id_profesor_usuarios_id_usuario_fk",
+          "tableFrom": "cursos",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "id_profesor"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "informacion_institucional": {
+      "name": "informacion_institucional",
+      "columns": {
+        "id_informacion": {
+          "name": "id_informacion",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tipo": {
+          "name": "tipo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "contenido": {
+          "name": "contenido",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fecha_actualizacion": {
+          "name": "fecha_actualizacion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_usuario_actualizacion": {
+          "name": "id_usuario_actualizacion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "informacion_institucional_id_usuario_actualizacion_usuarios_id_usuario_fk": {
+          "name": "informacion_institucional_id_usuario_actualizacion_usuarios_id_usuario_fk",
+          "tableFrom": "informacion_institucional",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "id_usuario_actualizacion"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "inscripciones": {
+      "name": "inscripciones",
+      "columns": {
+        "id_inscripcion": {
+          "name": "id_inscripcion",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "id_usuario": {
+          "name": "id_usuario",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_curso": {
+          "name": "id_curso",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "estado": {
+          "name": "estado",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'en_curso'"
+        },
+        "fecha_inscripcion": {
+          "name": "fecha_inscripcion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fecha_finalizacion": {
+          "name": "fecha_finalizacion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "codigo_certificado": {
+          "name": "codigo_certificado",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "inscripciones_codigo_certificado_unique": {
+          "name": "inscripciones_codigo_certificado_unique",
+          "columns": [
+            "codigo_certificado"
+          ],
+          "isUnique": true
+        },
+        "inscripciones_usuario_curso_uq": {
+          "name": "inscripciones_usuario_curso_uq",
+          "columns": [
+            "id_usuario",
+            "id_curso"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "inscripciones_id_usuario_usuarios_id_usuario_fk": {
+          "name": "inscripciones_id_usuario_usuarios_id_usuario_fk",
+          "tableFrom": "inscripciones",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "id_usuario"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "inscripciones_id_curso_cursos_id_curso_fk": {
+          "name": "inscripciones_id_curso_cursos_id_curso_fk",
+          "tableFrom": "inscripciones",
+          "tableTo": "cursos",
+          "columnsFrom": [
+            "id_curso"
+          ],
+          "columnsTo": [
+            "id_curso"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "interacciones_chat_ia": {
+      "name": "interacciones_chat_ia",
+      "columns": {
+        "id_interaccion": {
+          "name": "id_interaccion",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "id_usuario": {
+          "name": "id_usuario",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_curso": {
+          "name": "id_curso",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "id_leccion": {
+          "name": "id_leccion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "id_predica": {
+          "name": "id_predica",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "mensaje_usuario": {
+          "name": "mensaje_usuario",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "respuesta_ia": {
+          "name": "respuesta_ia",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "util": {
+          "name": "util",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "fecha_hora": {
+          "name": "fecha_hora",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "interacciones_chat_ia_id_usuario_usuarios_id_usuario_fk": {
+          "name": "interacciones_chat_ia_id_usuario_usuarios_id_usuario_fk",
+          "tableFrom": "interacciones_chat_ia",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "id_usuario"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "interacciones_chat_ia_id_curso_cursos_id_curso_fk": {
+          "name": "interacciones_chat_ia_id_curso_cursos_id_curso_fk",
+          "tableFrom": "interacciones_chat_ia",
+          "tableTo": "cursos",
+          "columnsFrom": [
+            "id_curso"
+          ],
+          "columnsTo": [
+            "id_curso"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "interacciones_chat_ia_id_leccion_lecciones_id_leccion_fk": {
+          "name": "interacciones_chat_ia_id_leccion_lecciones_id_leccion_fk",
+          "tableFrom": "interacciones_chat_ia",
+          "tableTo": "lecciones",
+          "columnsFrom": [
+            "id_leccion"
+          ],
+          "columnsTo": [
+            "id_leccion"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "interacciones_chat_ia_id_predica_predicas_id_predica_fk": {
+          "name": "interacciones_chat_ia_id_predica_predicas_id_predica_fk",
+          "tableFrom": "interacciones_chat_ia",
+          "tableTo": "predicas",
+          "columnsFrom": [
+            "id_predica"
+          ],
+          "columnsTo": [
+            "id_predica"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "lecciones": {
+      "name": "lecciones",
+      "columns": {
+        "id_leccion": {
+          "name": "id_leccion",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "id_modulo": {
+          "name": "id_modulo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "orden_secuencia": {
+          "name": "orden_secuencia",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        },
+        "contenido_texto": {
+          "name": "contenido_texto",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "enlace_video": {
+          "name": "enlace_video",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "archivo_pdf": {
+          "name": "archivo_pdf",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "activo": {
+          "name": "activo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "lecciones_id_modulo_modulos_id_modulo_fk": {
+          "name": "lecciones_id_modulo_modulos_id_modulo_fk",
+          "tableFrom": "lecciones",
+          "tableTo": "modulos",
+          "columnsFrom": [
+            "id_modulo"
+          ],
+          "columnsTo": [
+            "id_modulo"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "modulos": {
+      "name": "modulos",
+      "columns": {
+        "id_modulo": {
+          "name": "id_modulo",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "id_curso": {
+          "name": "id_curso",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "orden_secuencia": {
+          "name": "orden_secuencia",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 1
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "modulos_id_curso_cursos_id_curso_fk": {
+          "name": "modulos_id_curso_cursos_id_curso_fk",
+          "tableFrom": "modulos",
+          "tableTo": "cursos",
+          "columnsFrom": [
+            "id_curso"
+          ],
+          "columnsTo": [
+            "id_curso"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "predicas": {
+      "name": "predicas",
+      "columns": {
+        "id_predica": {
+          "name": "id_predica",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "titulo": {
+          "name": "titulo",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "predicador": {
+          "name": "predicador",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fecha_predica": {
+          "name": "fecha_predica",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "pasaje_biblico": {
+          "name": "pasaje_biblico",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "url_archivo_audio": {
+          "name": "url_archivo_audio",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "reproducciones": {
+          "name": "reproducciones",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "id_profesor": {
+          "name": "id_profesor",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "predicas_id_profesor_usuarios_id_usuario_fk": {
+          "name": "predicas_id_profesor_usuarios_id_usuario_fk",
+          "tableFrom": "predicas",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "id_profesor"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "progreso_lecciones": {
+      "name": "progreso_lecciones",
+      "columns": {
+        "id_progreso": {
+          "name": "id_progreso",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "id_inscripcion": {
+          "name": "id_inscripcion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_leccion": {
+          "name": "id_leccion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "completada": {
+          "name": "completada",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        },
+        "segundo_actual": {
+          "name": "segundo_actual",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        },
+        "fecha_completado": {
+          "name": "fecha_completado",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "progreso_inscripcion_leccion_uq": {
+          "name": "progreso_inscripcion_leccion_uq",
+          "columns": [
+            "id_inscripcion",
+            "id_leccion"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "progreso_lecciones_id_inscripcion_inscripciones_id_inscripcion_fk": {
+          "name": "progreso_lecciones_id_inscripcion_inscripciones_id_inscripcion_fk",
+          "tableFrom": "progreso_lecciones",
+          "tableTo": "inscripciones",
+          "columnsFrom": [
+            "id_inscripcion"
+          ],
+          "columnsTo": [
+            "id_inscripcion"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "progreso_lecciones_id_leccion_lecciones_id_leccion_fk": {
+          "name": "progreso_lecciones_id_leccion_lecciones_id_leccion_fk",
+          "tableFrom": "progreso_lecciones",
+          "tableTo": "lecciones",
+          "columnsFrom": [
+            "id_leccion"
+          ],
+          "columnsTo": [
+            "id_leccion"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "respuestas_foro": {
+      "name": "respuestas_foro",
+      "columns": {
+        "id_respuesta": {
+          "name": "id_respuesta",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "id_consulta": {
+          "name": "id_consulta",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_usuario": {
+          "name": "id_usuario",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "respuesta": {
+          "name": "respuesta",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fecha_respuesta": {
+          "name": "fecha_respuesta",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "respuestas_foro_id_consulta_consultas_foro_id_consulta_fk": {
+          "name": "respuestas_foro_id_consulta_consultas_foro_id_consulta_fk",
+          "tableFrom": "respuestas_foro",
+          "tableTo": "consultas_foro",
+          "columnsFrom": [
+            "id_consulta"
+          ],
+          "columnsTo": [
+            "id_consulta"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "respuestas_foro_id_usuario_usuarios_id_usuario_fk": {
+          "name": "respuestas_foro_id_usuario_usuarios_id_usuario_fk",
+          "tableFrom": "respuestas_foro",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "id_usuario"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "roles": {
+      "name": "roles",
+      "columns": {
+        "id_rol": {
+          "name": "id_rol",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "descripcion": {
+          "name": "descripcion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "''"
+        },
+        "activo": {
+          "name": "activo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        }
+      },
+      "indexes": {
+        "roles_nombre_unique": {
+          "name": "roles_nombre_unique",
+          "columns": [
+            "nombre"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "tokens_recuperacion": {
+      "name": "tokens_recuperacion",
+      "columns": {
+        "id_token": {
+          "name": "id_token",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "id_usuario": {
+          "name": "id_usuario",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "token_hash": {
+          "name": "token_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "fecha_expiracion": {
+          "name": "fecha_expiracion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "usado": {
+          "name": "usado",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "tokens_recuperacion_id_usuario_usuarios_id_usuario_fk": {
+          "name": "tokens_recuperacion_id_usuario_usuarios_id_usuario_fk",
+          "tableFrom": "tokens_recuperacion",
+          "tableTo": "usuarios",
+          "columnsFrom": [
+            "id_usuario"
+          ],
+          "columnsTo": [
+            "id_usuario"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "transcripciones": {
+      "name": "transcripciones",
+      "columns": {
+        "id_transcripcion": {
+          "name": "id_transcripcion",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "id_predica": {
+          "name": "id_predica",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "texto_transcripcion": {
+          "name": "texto_transcripcion",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "transcripciones_id_predica_unique": {
+          "name": "transcripciones_id_predica_unique",
+          "columns": [
+            "id_predica"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "transcripciones_id_predica_predicas_id_predica_fk": {
+          "name": "transcripciones_id_predica_predicas_id_predica_fk",
+          "tableFrom": "transcripciones",
+          "tableTo": "predicas",
+          "columnsFrom": [
+            "id_predica"
+          ],
+          "columnsTo": [
+            "id_predica"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "usuarios": {
+      "name": "usuarios",
+      "columns": {
+        "id_usuario": {
+          "name": "id_usuario",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "nombre": {
+          "name": "nombre",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "apellido": {
+          "name": "apellido",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "correo_electronico": {
+          "name": "correo_electronico",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "contrasenia_hash": {
+          "name": "contrasenia_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_rol": {
+          "name": "id_rol",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "id_congregacion": {
+          "name": "id_congregacion",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "fecha_registro": {
+          "name": "fecha_registro",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "activo": {
+          "name": "activo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        }
+      },
+      "indexes": {
+        "usuarios_correo_electronico_unique": {
+          "name": "usuarios_correo_electronico_unique",
+          "columns": [
+            "correo_electronico"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {
+        "usuarios_id_rol_roles_id_rol_fk": {
+          "name": "usuarios_id_rol_roles_id_rol_fk",
+          "tableFrom": "usuarios",
+          "tableTo": "roles",
+          "columnsFrom": [
+            "id_rol"
+          ],
+          "columnsTo": [
+            "id_rol"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "usuarios_id_congregacion_congregaciones_id_congregacion_fk": {
+          "name": "usuarios_id_congregacion_congregaciones_id_congregacion_fk",
+          "tableFrom": "usuarios",
+          "tableTo": "congregaciones",
+          "columnsFrom": [
+            "id_congregacion"
+          ],
+          "columnsTo": [
+            "id_congregacion"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

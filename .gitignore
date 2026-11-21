@@ -1,0 +1,11 @@
+node_modules/
+.next/
+out/
+.env
+.env*.local
+local.db
+local.db-journal
+local.db-wal
+local.db-shm
+*.tsbuildinfo
+next-env.d.ts
