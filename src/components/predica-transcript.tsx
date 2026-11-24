@@ -2,19 +2,28 @@
 
 import * as React from 'react';
 import {
+  BookmarkCheck,
   BookOpen,
   CheckCircle2,
   Compass,
+  Heart,
   Lightbulb,
   Quote,
+  Sparkles,
 } from 'lucide-react';
+
+type SemanticKind =
+  | 'introduccion'
+  | 'oracion'
+  | 'contexto'
+  | 'ejemplo'
+  | 'practica'
+  | 'conclusion';
 
 type Block =
   | { type: 'h1'; text: string }
   | { type: 'h2'; text: string }
-  | { type: 'contexto'; title: string; lines: string[] }
-  | { type: 'ejemplo'; title: string; lines: string[] }
-  | { type: 'practica'; title: string; lines: string[] }
+  | { type: SemanticKind; title: string; lines: string[] }
   | { type: 'cita'; lines: string[] }
   | { type: 'lista'; items: string[] }
   | { type: 'parrafo'; text: string };
@@ -45,28 +54,37 @@ function parseTranscriptBlocks(raw: string): Block[] {
       continue;
     }
 
-    // Bloques semánticos: [CONTEXTO], [EJEMPLO], [PRACTICA] o etiquetas naturales
+    // Bloques semánticos: [INTRODUCCION], [ORACION], [CONTEXTO], [EJEMPLO], [PRACTICA], [CONCLUSION]
     const tagMatch = line.match(
-      /^\[(CONTEXTO|EJEMPLO|PR[ÁA]CTICA|APLICACI[ÓO]N)\]\s*(.*)$/i
+      /^\[(INTRODUCCI[ÓO]N|ORACI[ÓO]N|CONTEXTO|EJEMPLO|PR[ÁA]CTICA|APLICACI[ÓO]N|CONCLUSI[ÓO]N)\]\s*(.*)$/i
     );
     const naturalMatch = tagMatch
       ? null
       : line.match(
-          /^(Contexto(?:\s+(?:hist[óo]rico|b[íi]blico))?|Ejemplo|Ilustraci[óo]n|Pr[áa]ctica|Aplicaci[óo]n(?:\s+pr[áa]ctica)?)\s*:\s*(.*)$/i
+          /^(Introducci[óo]n|Oraci[óo]n(?:\s+(?:inicial|final))?|Contexto(?:\s+(?:hist[óo]rico|b[íi]blico))?|Ejemplo|Ilustraci[óo]n|Pr[áa]ctica|Aplicaci[óo]n(?:\s+pr[áa]ctica)?|Conclusi[óo]n)\s*:\s*(.*)$/i
         );
 
     if (tagMatch || naturalMatch) {
       const rawKind = (tagMatch?.[1] ?? naturalMatch?.[1] ?? '').toLowerCase();
       const firstLine = (tagMatch?.[2] ?? naturalMatch?.[2] ?? '').trim();
 
-      let kind: 'contexto' | 'ejemplo' | 'practica' = 'contexto';
+      let kind: SemanticKind = 'contexto';
       let defaultTitle = 'Contexto Bíblico e Histórico';
-      if (rawKind.startsWith('ej') || rawKind.startsWith('ilust')) {
+      if (rawKind.startsWith('intro')) {
+        kind = 'introduccion';
+        defaultTitle = 'Introducción';
+      } else if (rawKind.startsWith('orac')) {
+        kind = 'oracion';
+        defaultTitle = 'Oración';
+      } else if (rawKind.startsWith('ej') || rawKind.startsWith('ilust')) {
         kind = 'ejemplo';
         defaultTitle = 'Ejemplo e Ilustración';
       } else if (rawKind.startsWith('pr') || rawKind.startsWith('aplic')) {
         kind = 'practica';
         defaultTitle = 'Aplicación Práctica';
+      } else if (rawKind.startsWith('concl')) {
+        kind = 'conclusion';
+        defaultTitle = 'Conclusión';
       }
 
       const collected: string[] = [];
@@ -78,7 +96,9 @@ function parseTranscriptBlocks(raw: string): Block[] {
         if (
           !next ||
           /^#{1,3}\s+/.test(next) ||
-          /^\[(CONTEXTO|EJEMPLO|PR[ÁA]CTICA|APLICACI[ÓO]N)\]/i.test(next) ||
+          /^\[(INTRODUCCI[ÓO]N|ORACI[ÓO]N|CONTEXTO|EJEMPLO|PR[ÁA]CTICA|APLICACI[ÓO]N|CONCLUSI[ÓO]N)\]/i.test(
+            next
+          ) ||
           /^>\s*/.test(next)
         ) {
           break;
@@ -227,6 +247,42 @@ export function PredicaTranscript({
               </div>
             );
 
+          case 'introduccion':
+            return (
+              <aside
+                key={idx}
+                className="rounded-2xl bg-[#FAF6EE] border border-[#E6D9C3] p-5 space-y-2.5"
+              >
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-[#8C5A21]">
+                  <Sparkles className="w-4 h-4 shrink-0" />
+                  <span>{block.title}</span>
+                </div>
+                <div className="font-serif-editorial text-[1rem] leading-relaxed text-[#2D221A] space-y-2">
+                  {block.lines.map((l, j) => (
+                    <p key={j}>{renderInlineFormatting(l, highlightQuery)}</p>
+                  ))}
+                </div>
+              </aside>
+            );
+
+          case 'oracion':
+            return (
+              <aside
+                key={idx}
+                className="rounded-2xl bg-[#F6F4FA] border border-[#DDD6EB] p-5 space-y-2.5"
+              >
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-[#5B467A]">
+                  <Heart className="w-4 h-4 shrink-0" />
+                  <span>{block.title}</span>
+                </div>
+                <div className="font-serif-editorial italic text-[0.98rem] leading-relaxed text-[#2E253B] space-y-2">
+                  {block.lines.map((l, j) => (
+                    <p key={j}>{renderInlineFormatting(l, highlightQuery)}</p>
+                  ))}
+                </div>
+              </aside>
+            );
+
           case 'contexto':
             return (
               <aside
@@ -274,6 +330,24 @@ export function PredicaTranscript({
                   <span>{block.title}</span>
                 </div>
                 <div className="text-[0.95rem] leading-relaxed text-[#243328] space-y-2">
+                  {block.lines.map((l, j) => (
+                    <p key={j}>{renderInlineFormatting(l, highlightQuery)}</p>
+                  ))}
+                </div>
+              </aside>
+            );
+
+          case 'conclusion':
+            return (
+              <aside
+                key={idx}
+                className="rounded-2xl bg-[#241A13]/[0.04] border border-[#D4C3AA] p-5 space-y-2.5"
+              >
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-[#241A13]">
+                  <BookmarkCheck className="w-4 h-4 text-[#A46B29] shrink-0" />
+                  <span>{block.title}</span>
+                </div>
+                <div className="font-serif-editorial text-[1rem] leading-relaxed text-[#241A13] space-y-2">
                   {block.lines.map((l, j) => (
                     <p key={j}>{renderInlineFormatting(l, highlightQuery)}</p>
                   ))}

@@ -4,6 +4,7 @@ import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Bold,
+  BookmarkCheck,
   CheckCircle2,
   Compass,
   Eye,
@@ -11,15 +12,18 @@ import {
   FileText,
   Heading1,
   Heading2,
+  Heart,
   Lightbulb,
   Link2,
   List,
+  Loader2,
   Pencil,
   Plus,
   Quote,
   Sparkles,
   Trash2,
   Upload,
+  Wand2,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import { formatFecha } from '@/lib/format';
@@ -88,8 +92,11 @@ export function GestionPredicasClient({
   const [textoTranscripcion, setTranscripcion] = React.useState('');
   const [editorTab, setEditorTab] = React.useState<'edit' | 'preview'>('edit');
   const [saving, setSaving] = React.useState(false);
+  const [transcribing, setTranscribing] = React.useState(false);
   const textareaRef = React.useRef<HTMLTextAreaElement | null>(null);
   const fileInputRef = React.useRef<HTMLInputElement | null>(null);
+
+  const hasAudioLoaded = urlArchivoAudio.trim().length >= 5;
 
   const parsedAudio = React.useMemo(
     () => (urlArchivoAudio.trim() ? parseAudioSource(urlArchivoAudio) : null),
@@ -199,6 +206,39 @@ export function GestionPredicasClient({
         start + needsNewlineBefore.length + prefix.length;
       el.setSelectionRange(cursorStart, cursorStart + selected.length);
     });
+  };
+
+  const handleTranscribirIa = async () => {
+    if (!hasAudioLoaded || transcribing) return;
+    setTranscribing(true);
+    try {
+      const res = await fetch('/api/predicas/transcribir', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          urlArchivoAudio,
+          titulo: titulo.trim() || undefined,
+          predicador: predicador.trim() || undefined,
+          pasajeBiblico: pasajeBiblico.trim() || undefined,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        toast.error(
+          data.error?.message ?? 'No se pudo realizar la transcripción con IA.'
+        );
+        return;
+      }
+      setTranscripcion(data.textoTranscripcion ?? '');
+      setEditorTab('preview');
+      toast.success(
+        '¡Transcripción generada con IA! Revisá el resultado en la vista previa o pasá a Editar para ajustarla.'
+      );
+    } catch {
+      toast.error('Error de conexión al transcribir el audio.');
+    } finally {
+      setTranscribing(false);
+    }
   };
 
   const handleSave = async (e: React.FormEvent) => {
@@ -494,7 +534,34 @@ export function GestionPredicasClient({
                 <FileText className="w-4 h-4 text-[#A46B29]" />
                 <span>3. Desarrollo de la Enseñanza</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  disabled={!hasAudioLoaded || transcribing}
+                  onClick={handleTranscribirIa}
+                  title={
+                    hasAudioLoaded
+                      ? 'Transcribir automáticamente el audio cargado usando IA'
+                      : 'Cargá primero el audio en el punto 2 para activar la transcripción con IA'
+                  }
+                  className={`px-3 py-1 rounded-full text-[11px] font-semibold inline-flex items-center gap-1.5 transition-all ${
+                    hasAudioLoaded && !transcribing
+                      ? 'bg-[#A46B29] text-white hover:bg-[#88561D] shadow-xs cursor-pointer'
+                      : 'bg-[#E8E0D3] text-[#8E7F6F] cursor-not-allowed'
+                  }`}
+                >
+                  {transcribing ? (
+                    <>
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                      <span>Transcribiendo con IA...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Wand2 className="w-3.5 h-3.5" />
+                      <span>Realizar transcripción</span>
+                    </>
+                  )}
+                </button>
                 <button
                   type="button"
                   onClick={() => {
@@ -622,6 +689,34 @@ export function GestionPredicasClient({
                   >
                     <List className="w-3.5 h-3.5 text-[#A46B29]" />
                     <span>Lista</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      insertSnippet(
+                        '[ORACION]\n',
+                        'Oración de apertura o cierre...'
+                      )
+                    }
+                    className="px-2.5 py-1 rounded-lg text-xs font-semibold text-[#5B467A] bg-[#F6F4FA] border border-[#DDD6EB] hover:bg-[#ECE7F5] inline-flex items-center gap-1 cursor-pointer"
+                    title="Insertar bloque de Oración"
+                  >
+                    <Heart className="w-3.5 h-3.5" />
+                    <span>Oración</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      insertSnippet(
+                        '[CONCLUSION]\n',
+                        'Conclusión y llamado final del mensaje...'
+                      )
+                    }
+                    className="px-2.5 py-1 rounded-lg text-xs font-semibold text-[#241A13] bg-[#EFE9DF] border border-[#D4C3AA] hover:bg-[#E5DCCD] inline-flex items-center gap-1 cursor-pointer"
+                    title="Insertar bloque de Conclusión"
+                  >
+                    <BookmarkCheck className="w-3.5 h-3.5 text-[#A46B29]" />
+                    <span>Conclusión</span>
                   </button>
                   <button
                     type="button"
