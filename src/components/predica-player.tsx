@@ -125,12 +125,12 @@ export function PredicaPlayer({
           {audioSource.kind === 'google-drive' ? (
             <div
               onMouseDown={handlePlay}
-              className="rounded-lg overflow-hidden bg-white"
+              className="rounded-xl overflow-hidden bg-[#202124] border border-white/10 shadow-inner"
             >
               <iframe
                 src={audioSource.embedUrl}
                 allow="autoplay"
-                className="w-full h-[88px] border-0 block"
+                className="w-full h-[140px] border-0 block"
                 title={`Audio: ${predica.titulo}`}
               />
             </div>

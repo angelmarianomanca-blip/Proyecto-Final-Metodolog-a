@@ -461,12 +461,14 @@ export function GestionPredicasClient({
                       ✓ Enlace de Google Drive detectado · Vista previa del
                       reproductor:
                     </div>
-                    <iframe
-                      src={parsedAudio.embedUrl}
-                      allow="autoplay"
-                      className="w-full h-[84px] border-0 rounded-lg"
-                      title="Vista previa de audio de Google Drive"
-                    />
+                    <div className="rounded-xl overflow-hidden bg-[#202124] border border-black/10">
+                      <iframe
+                        src={parsedAudio.embedUrl}
+                        allow="autoplay"
+                        className="w-full h-[136px] border-0 block"
+                        title="Vista previa de audio de Google Drive"
+                      />
+                    </div>
                   </div>
                 )}
 
