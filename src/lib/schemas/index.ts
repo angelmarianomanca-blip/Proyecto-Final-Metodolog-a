@@ -216,11 +216,15 @@ export const crearPredicaSchema = z.object({
     .trim()
     .regex(/^\d{4}-\d{2}-\d{2}$/, 'Formato esperado AAAA-MM-DD.'),
   pasajeBiblico: z.string().trim().min(3, 'Ingresá el pasaje bíblico base.').max(120),
-  urlArchivoAudio: z.string().trim().min(5, 'Ingresá la URL o ruta del audio.').max(500),
+  urlArchivoAudio: z
+    .string()
+    .trim()
+    .min(5, 'Subí un archivo de audio o ingresá un enlace válido.')
+    .max(4_600_000, 'El archivo de audio supera el límite permitido (máx. 3 MB para carga directa).'),
   textoTranscripcion: z
     .string()
     .trim()
-    .min(20, 'Ingresá la transcripción completa (mín. 20 caracteres).')
+    .min(20, 'Ingresá el contenido de la prédica (mín. 20 caracteres).')
     .max(80000),
 });
 
@@ -233,7 +237,7 @@ export const editarPredicaSchema = z.strictObject({
     .regex(/^\d{4}-\d{2}-\d{2}$/, 'Formato esperado AAAA-MM-DD.')
     .optional(),
   pasajeBiblico: z.string().trim().min(3).max(120).optional(),
-  urlArchivoAudio: z.string().trim().min(5).max(500).optional(),
+  urlArchivoAudio: z.string().trim().min(5).max(4_600_000).optional(),
   textoTranscripcion: z.string().trim().min(20).max(80000).optional(),
 });
 
