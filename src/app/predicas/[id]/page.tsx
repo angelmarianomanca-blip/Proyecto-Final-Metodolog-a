@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { ChevronLeft } from 'lucide-react';
 import { getSessionUser } from '@/lib/auth/session';
 import { obtenerPredicaDetalle } from '@/services/predicas';
+import { extractGoogleDriveFileId } from '@/lib/audio';
 import { isApiError } from '@/lib/errors';
 import { PublicShell } from '@/components/public-shell';
 import { PredicaPlayer } from '@/components/predica-player';
@@ -23,6 +24,11 @@ export default async function PredicaDetallePage({
     throw err;
   }
 
+  // Nunca exponer el enlace privado/público de Google Drive en el cliente
+  const safePredica = extractGoogleDriveFileId(predica.urlArchivoAudio)
+    ? { ...predica, urlArchivoAudio: `/api/predicas/${predica.id}/audio` }
+    : predica;
+
   return (
     <PublicShell user={user}>
       <Stack className="gap-5">
@@ -33,7 +39,7 @@ export default async function PredicaDetallePage({
           <ChevronLeft className="w-4 h-4" />
           <span>Volver a prédicas</span>
         </Link>
-        <PredicaPlayer predica={predica} isAuthenticated={Boolean(user)} />
+        <PredicaPlayer predica={safePredica} isAuthenticated={Boolean(user)} />
       </Stack>
     </PublicShell>
   );

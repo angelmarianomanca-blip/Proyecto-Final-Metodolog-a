@@ -5,7 +5,6 @@ import Link from 'next/link';
 import {
   BookOpen,
   Clock,
-  ExternalLink,
   Headphones,
   Search,
   Sparkles,
@@ -99,52 +98,25 @@ export function PredicaPlayer({
         </div>
 
         <div className="bg-white/10 rounded-xl p-4 border border-white/15 space-y-2.5">
-          <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-[#E9D5B5]">
-            <span className="inline-flex items-center gap-1.5 font-medium">
-              <Headphones className="w-3.5 h-3.5" />
-              <span>
-                {audioSource.kind === 'google-drive'
-                  ? 'Audio de la prédica · Google Drive'
-                  : 'Audio de la prédica'}
-              </span>
-            </span>
-            {audioSource.kind === 'google-drive' && (
-              <a
-                href={audioSource.originalUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={handlePlay}
-                className="inline-flex items-center gap-1 text-[#D4A366] hover:text-white underline underline-offset-2"
-              >
-                <span>Abrir en Drive</span>
-                <ExternalLink className="w-3 h-3" />
-              </a>
-            )}
+          <div className="text-xs text-[#E9D5B5] inline-flex items-center gap-1.5 font-medium">
+            <Headphones className="w-3.5 h-3.5" />
+            <span>Reproductor de Audio · Reproducción progresiva</span>
           </div>
 
-          {audioSource.kind === 'google-drive' ? (
-            <div
-              onMouseDown={handlePlay}
-              className="rounded-xl overflow-hidden bg-[#202124] border border-white/10 shadow-inner"
-            >
-              <iframe
-                src={audioSource.embedUrl}
-                allow="autoplay"
-                className="w-full h-[140px] border-0 block"
-                title={`Audio: ${predica.titulo}`}
-              />
-            </div>
-          ) : (
-            <audio
-              controls
-              preload="metadata"
-              onPlay={handlePlay}
-              className="w-full"
-              src={audioSource.src}
-            >
-              Tu navegador no soporta audio HTML5.
-            </audio>
-          )}
+          <audio
+            controls
+            controlsList="nodownload"
+            preload="metadata"
+            onPlay={handlePlay}
+            className="w-full"
+            src={
+              audioSource.kind === 'google-drive'
+                ? `/api/predicas/${predica.id}/audio`
+                : audioSource.src
+            }
+          >
+            Tu navegador no soporta audio HTML5.
+          </audio>
         </div>
       </div>
 

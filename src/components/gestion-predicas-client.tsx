@@ -458,17 +458,18 @@ export function GestionPredicasClient({
                 {parsedAudio?.kind === 'google-drive' && (
                   <div className="space-y-2 bg-white border border-emerald-200 rounded-xl p-3">
                     <div className="text-xs font-semibold text-emerald-800">
-                      ✓ Enlace de Google Drive detectado · Vista previa del
-                      reproductor:
+                      ✓ Audio de Google Drive listo · Se reproducirá de forma
+                      privada en el reproductor normal (sin mostrar tu Drive):
                     </div>
-                    <div className="rounded-xl overflow-hidden bg-[#202124] border border-black/10">
-                      <iframe
-                        src={parsedAudio.embedUrl}
-                        allow="autoplay"
-                        className="w-full h-[136px] border-0 block"
-                        title="Vista previa de audio de Google Drive"
-                      />
-                    </div>
+                    <audio
+                      controls
+                      controlsList="nodownload"
+                      preload="metadata"
+                      src={`/api/predicas/audio-preview?url=${encodeURIComponent(
+                        parsedAudio.originalUrl
+                      )}`}
+                      className="w-full h-10"
+                    />
                   </div>
                 )}
 
